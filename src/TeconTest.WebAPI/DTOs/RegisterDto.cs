@@ -2,6 +2,9 @@
 
 namespace TeconTest.WebAPI.DTOs
 {
+    /// <summary>
+    /// Dto для регистрации пользователя.
+    /// </summary>
     public class RegisterDto
     { 
         public string Email { get; set; }

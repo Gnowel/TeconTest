@@ -2,6 +2,9 @@
 
 namespace TeconTest.WebAPI.DTOs
 {
+    /// <summary>
+    /// Dto для смены данных пользователя. 
+    /// </summary>
     public class UserDto
     {
         public string FirstName { get; set; }

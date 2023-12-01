@@ -3,6 +3,9 @@ using TeconTest.WebAPI.Models;
 
 namespace TeconTest.WebAPI.Validations
 {
+    /// <summary>
+    /// Валидатор для адреса.
+    /// </summary>
     public class AddressValidator : AbstractValidator<Address>
     {
         public AddressValidator()

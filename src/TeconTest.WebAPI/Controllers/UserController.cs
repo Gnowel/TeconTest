@@ -5,9 +5,15 @@ using TeconTest.WebAPI.Models;
 
 namespace TeconTest.WebAPI.Controllers
 {
+    /// <summary>
+    /// Контроллер для пользователей.
+    /// </summary>
     [ApiController]
     public class UserController : ControllerBase
     {
+        /// <summary>
+        /// Список пользователей.
+        /// </summary>
         private static List<User> _users = new List<User>
         {
              new User()
@@ -42,7 +48,10 @@ namespace TeconTest.WebAPI.Controllers
              }
         };
 
-
+        /// <summary>
+        /// Получение списка пользователей (для проверки).
+        /// </summary>
+        /// <returns>Список пользователей</returns>
         [HttpGet]
         [Route("api/users")]
         public IActionResult GetUsers()
@@ -50,7 +59,12 @@ namespace TeconTest.WebAPI.Controllers
             return Ok(_users.ToList());
         }
 
-
+        /// <summary>
+        /// Регистрация пользователя. 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>При успешной регистрации возвращает Ok,
+        /// иначе ошибку</returns>
         [HttpPost]
         [Route("api/user/register")]
         public IActionResult Register([FromBody] RegisterDto request)
@@ -74,7 +88,12 @@ namespace TeconTest.WebAPI.Controllers
             return Ok($"Пользователь {request.Email} успешно добавлен.");
         }
 
-
+        /// <summary>
+        /// Аутентификация пользователя.
+        /// </summary>
+        /// <param name="request">Почта и пароль</param>
+        /// <returns>При успешной аутентификации возвращает пользователя, 
+        /// иначе ошибку</returns>
         [HttpPost]
         [Route("api/user/login")]
         public IActionResult Login([FromBody] LoginDto request)
@@ -89,7 +108,13 @@ namespace TeconTest.WebAPI.Controllers
             return Unauthorized("Неправильная почта и (или) пароль.");
         }
 
-
+        /// <summary>
+        /// Смена пароля пользователя. 
+        /// </summary>
+        /// <param name="id">Id пользователя</param>
+        /// <param name="request">Пароль</param>
+        /// <returns>При успешном смене пароли возвращает Ok,
+        /// иначе ошибку</returns>
         [HttpPut]
         [Route("api/user/update-password/{id:guid}")]
         public IActionResult UpdatePassword(Guid id, [FromBody] UpdatePasswordDto request)
@@ -102,10 +127,17 @@ namespace TeconTest.WebAPI.Controllers
             }
 
             _users[userIndex].Password = request.Password;
+
             return Ok("Пароль успешно изменен.");
         }
 
-
+        /// <summary>
+        /// Смена данных пользователя.
+        /// </summary>
+        /// <param name="id">Id пользователя</param>
+        /// <param name="request">Данные,которые нужно менять</param>
+        /// <returns>При успешной смене данных возвращает пользователя, 
+        /// иначе ошибку</returns>
         [HttpPatch]
         [Route("api/user/update-user/{id:guid}")]
         public IActionResult UpdateUser(Guid id, [FromBody] JsonPatchDocument<UserDto> request)
@@ -139,6 +171,5 @@ namespace TeconTest.WebAPI.Controllers
 
             return Ok(_users[userIndex]);
         }
-
     }
 }

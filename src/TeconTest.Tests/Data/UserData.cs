@@ -3,8 +3,15 @@ using TeconTest.WebAPI.Models;
 
 namespace TeconTest.Tests.Data
 {
+    /// <summary>
+    /// Класс генерирует разные данные для тестов
+    /// </summary>
     public class UserData
     {
+        /// <summary>
+        /// Создаёт данные для успешной регистрации.
+        /// </summary>
+        /// <returns>Данные для регистрации</returns>
         public static RegisterDto NewUserOk() => 
             new RegisterDto()
             {
@@ -20,6 +27,11 @@ namespace TeconTest.Tests.Data
                     HouseNumber = "24A"
                 }
             };
+
+        /// <summary>
+        /// Создаёт данные для неуспешной регистрации.
+        /// </summary>
+        /// <returns>Данные для регистрации</returns>
         public static RegisterDto NewUserBad() =>
             new RegisterDto()
             {
@@ -36,6 +48,10 @@ namespace TeconTest.Tests.Data
                 }
             };
 
+        /// <summary>
+        /// Создаёт данные для успешной аутентификации.
+        /// </summary>
+        /// <returns>Пароль и почта</returns>
         public static LoginDto LoginOk() =>
             new LoginDto()
             {
@@ -43,28 +59,15 @@ namespace TeconTest.Tests.Data
                 Password = "Qwert1",
             };
 
-        public static LoginDto LoginBad() =>
+        /// <summary>
+        /// Создаёт данные для неуспешной аутентификации.
+        /// </summary>
+        /// <returns></returns>
+        public static LoginDto LoginUnauthorized() =>
             new LoginDto()
             {
                 Email = "",
                 Password = "Qwert1",
-            };
-
-        public static User CheckUser() =>
-            new User()
-            {
-                Id = Guid.Parse("F9168C2E-CEB3-4faa-B6BF-329BF39FA1E4"),
-                Email = "Foo@gmail.com",
-                Password = "Qwert1",
-                LastName = "Шухтин",
-                FirstName = "Михаил",
-                MiddleName = "Андреевич",
-                Address = new Address()
-                {
-                    City = "Иваново",
-                    Street = "ул. Кузнецова",
-                    HouseNumber = "124"
-                }
             };
     }
 }

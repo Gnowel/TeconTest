@@ -4,6 +4,9 @@ using TeconTest.WebAPI.Extensions;
 
 namespace TeconTest.WebAPI.Validations
 {
+    /// <summary>
+    /// Валидатор для регистрации.
+    /// </summary>
     public class RegisterValidator : AbstractValidator<RegisterDto>
     {
         public RegisterValidator() 
